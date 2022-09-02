@@ -18,7 +18,6 @@ function ServiceAdd() {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    if (isNaN(item.price)) item.price = 0;
     dispatch(addService(item.name, item.price));
     for (let key in item) {
 		if (key === "searchText") continue;
@@ -32,15 +31,17 @@ function ServiceAdd() {
 	dispatch(searchService(value));
   }
 
-  console.log(item);
   return (
     <>
       <form onSubmit={handleSubmit} onReset={handleReset}>
         <input name="name" onChange={handleChange} value={item.name} />
-        <input name="price" onChange={handleChange} value={item.price} />
+        <input name="price" type="number" min="0" onChange={handleChange} value={item.price} />
         <button type="submit">Save</button>
         {item.name || item.price ? <button type="reset">Clear</button> : null}
       </form>
+      <br />
+      <label>Поиск</label>
+      <br />
 	  <input name="searchText" onChange={handleSearch}  value={item.searchText}/>
     </>
   );

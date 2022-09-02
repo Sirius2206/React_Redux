@@ -1,7 +1,7 @@
 import { ADD_SERVICE, REMOVE_SERVICE, CHANGE_SERVICE_FIELD, SEARCH_SERVICE } from './actionTypes';
 
-export function addService(name, price, editId = null) {
-  return {type: ADD_SERVICE, payload: {name, price, editId}};
+export function addService(name, price) {
+  return {type: ADD_SERVICE, payload: {name, price}};
 }
 
 export function removeService(id) {

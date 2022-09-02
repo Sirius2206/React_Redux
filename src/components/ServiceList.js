@@ -19,7 +19,7 @@ function ServiceList() {
   }
 
   return (
-    <ul>
+    <ul style={{listStyleType: "none"}}>
       {items.map(o => (
         <li key={o.id}>
           {o.name} {o.price}
