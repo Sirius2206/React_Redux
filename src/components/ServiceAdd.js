@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { changeServiceField, addService, searchService } from "../actions/actionCreators";
+import { changeServiceField, addService, searchService } from "../store/actions/actionCreators";
 
 function ServiceAdd() {
   const item = useSelector((state) => state.serviceAdd);
@@ -42,7 +42,7 @@ function ServiceAdd() {
         <input name="name" onChange={handleChange} value={item.name} placeholder="Название услуги"/>
         <input name="price" type="number" min="0" onChange={handleChange} value={item.price} placeholder="Цена"/>
         <button type="submit">Save</button>
-        {item.name || item.price ? <button type="reset">Clear</button> : null}
+        {items.find(item => item.onEdit === true) ? <button type="reset">Clear</button> : null}
       </form>
       <br />
       <label>Поиск</label>

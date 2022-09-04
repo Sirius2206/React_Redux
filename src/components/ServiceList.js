@@ -8,7 +8,9 @@ function ServiceList() {
   const dispatch = useDispatch();
 
   const handleEdit = id => {
-    const editItem = items.find(item => item.id == id);
+    items.map(item => delete item.onEdit);
+    console.log(items);
+    const editItem = items.find(item => item.id === id);
     editItem.onEdit = true;
     for (let key in editItem) {
       if (key === "id") continue;
