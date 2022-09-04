@@ -9,7 +9,6 @@ function ServiceList() {
 
   const handleEdit = id => {
     items.map(item => delete item.onEdit);
-    console.log(items);
     const editItem = items.find(item => item.id === id);
     editItem.onEdit = true;
     for (let key in editItem) {
