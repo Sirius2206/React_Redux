@@ -1,17 +1,18 @@
 import React from 'react'
 import {useSelector, useDispatch} from 'react-redux';
-import {removeService} from '../actions/actionCreators';
-import {changeServiceField} from '../actions/actionCreators';
+import {removeService} from '../store/actions/actionCreators';
+import {changeServiceField} from '../store/actions/actionCreators';
 
 function ServiceList() {
   const items = useSelector(state => state.serviceList);
   const dispatch = useDispatch();
 
   const handleEdit = id => {
-    const arr = items.find(item => item.id == id);
-    for (let key in arr) {
+    const editItem = items.find(item => item.id == id);
+    editItem.onEdit = true;
+    for (let key in editItem) {
       if (key === "id") continue;
-      dispatch(changeServiceField(key, arr[key]));
+      dispatch(changeServiceField(key, editItem[key]));
     }
   }
   const handleRemove = id => {

@@ -4,9 +4,14 @@ import { changeServiceField, addService, searchService } from "../actions/action
 
 function ServiceAdd() {
   const item = useSelector((state) => state.serviceAdd);
+  const items = useSelector((state) => state.serviceList);
   const dispatch = useDispatch();
 
   const handleReset = () => {
+    const editItem = items.find(item => item.onEdit === true);
+    if (editItem) {
+      delete editItem.onEdit;
+    }
     for (let key in item) {
       dispatch(changeServiceField(key, ""));
     }
@@ -34,15 +39,15 @@ function ServiceAdd() {
   return (
     <>
       <form onSubmit={handleSubmit} onReset={handleReset}>
-        <input name="name" onChange={handleChange} value={item.name} />
-        <input name="price" type="number" min="0" onChange={handleChange} value={item.price} />
+        <input name="name" onChange={handleChange} value={item.name} placeholder="Название услуги"/>
+        <input name="price" type="number" min="0" onChange={handleChange} value={item.price} placeholder="Цена"/>
         <button type="submit">Save</button>
         {item.name || item.price ? <button type="reset">Clear</button> : null}
       </form>
       <br />
       <label>Поиск</label>
       <br />
-	  <input name="searchText" onChange={handleSearch}  value={item.searchText}/>
+	  <input name="searchText" onChange={handleSearch}  value={item.searchText} placeholder="Поиск услуги"/>
     </>
   );
 }
